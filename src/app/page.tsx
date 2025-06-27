@@ -53,11 +53,8 @@ export default function Home() {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 15000);
 
-    // Get today's date in YYYY-MM-DD format
-    const today = new Date();
-    const dateString = today.toISOString().split('T')[0]; // This will give us "2025-06-27"
-
-    const response = await fetch(`/api/flight?flight=IX322&date=${dateString}`, {
+    // Simple API call without date parameter
+    const response = await fetch('/api/flight?flight=IX322', {
       signal: controller.signal,
       headers: {
         'Cache-Control': 'no-cache',
