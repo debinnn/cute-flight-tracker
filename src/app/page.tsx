@@ -46,50 +46,54 @@ export default function Home() {
   const [refreshCount, setRefreshCount] = useState(0);
 
   const fetchFlightData = useCallback(async () => {
-    try {
-      setLoading(true);
-      setError(null);
+  try {
+    setLoading(true);
+    setError(null);
 
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 15000);
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 15000);
 
-      const response = await fetch('/api/flight?flight=IX322', {
-        signal: controller.signal,
-        headers: {
-          'Cache-Control': 'no-cache',
-        },
-      });
+    // Get today's date in YYYY-MM-DD format
+    const today = new Date();
+    const dateString = today.toISOString().split('T')[0]; // This will give us "2025-06-27"
 
-      clearTimeout(timeoutId);
+    const response = await fetch(`/api/flight?flight=IX322&date=${dateString}`, {
+      signal: controller.signal,
+      headers: {
+        'Cache-Control': 'no-cache',
+      },
+    });
 
-      const data = await response.json();
+    clearTimeout(timeoutId);
 
-      if (!response.ok) {
-        throw new Error(data.error || `Server error: ${response.status}`);
-      }
+    const data = await response.json();
 
-      setFlightData(data.flight);
-      setLastUpdated(new Date());
-      setRefreshCount(prev => prev + 1);
-      console.log('Flight data updated successfully');
-
-    } catch (err: unknown) {
-      if (err instanceof Error) {
-        if (err.name === 'AbortError') {
-          setError('Request timed out. Please try again.');
-        } else {
-          setError(err.message);
-        }
-        console.error('Failed to fetch flight data:', err);
-      } else {
-        const errorMessage = 'An unexpected error occurred';
-        setError(errorMessage);
-        console.error('Failed to fetch flight data:', err);
-      }
-    } finally {
-      setLoading(false);
+    if (!response.ok) {
+      throw new Error(data.error || `Server error: ${response.status}`);
     }
-  }, []);
+
+    setFlightData(data.flight);
+    setLastUpdated(new Date());
+    setRefreshCount(prev => prev + 1);
+    console.log('Flight data updated successfully');
+
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      if (err.name === 'AbortError') {
+        setError('Request timed out. Please try again.');
+      } else {
+        setError(err.message);
+      }
+      console.error('Failed to fetch flight data:', err);
+    } else {
+      const errorMessage = 'An unexpected error occurred';
+      setError(errorMessage);
+      console.error('Failed to fetch flight data:', err);
+    }
+  } finally {
+    setLoading(false);
+  }
+}, []);
 
   useEffect(() => {
     fetchFlightData();
