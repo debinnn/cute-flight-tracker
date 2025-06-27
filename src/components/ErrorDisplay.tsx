@@ -60,7 +60,7 @@ const ErrorDisplay = ({ error, onRetry }: ErrorDisplayProps) => {
           transition={{ duration: 3, repeat: Infinity }}
           className="text-pink-600 text-xs sm:text-sm"
         >
-          Don't worry, we'll get your flight info soon! 🌸✈️
+          Don&apos;t worry, we&apos;ll get your flight info soon! 🌸✈️
         </motion.div>
       </div>
     </motion.div>
