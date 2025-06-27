@@ -119,9 +119,6 @@ export default function Home() {
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-pink-800 mb-3 drop-shadow-lg leading-tight px-2">
             Flight Tracker ✈️
           </h1>
-          <p className="text-base sm:text-lg text-pink-600 mb-2 px-2">
-            Tracking IX 322 
-          </p>
           {lastUpdated && (
             <div className="text-xs sm:text-sm text-pink-500 space-y-1 px-2">
               <p>Last updated: {lastUpdated.toLocaleTimeString()}</p>
