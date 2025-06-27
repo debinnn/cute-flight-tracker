@@ -120,7 +120,7 @@ export default function Home() {
             Flight Tracker ✈️
           </h1>
           <p className="text-base sm:text-lg text-pink-600 mb-2 px-2">
-            Tracking IX 322 with love! 💕
+            Tracking IX 322 
           </p>
           {lastUpdated && (
             <div className="text-xs sm:text-sm text-pink-500 space-y-1 px-2">
