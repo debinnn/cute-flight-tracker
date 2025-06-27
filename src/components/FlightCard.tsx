@@ -76,17 +76,14 @@ const FlightCard: React.FC<FlightCardProps> = ({ flightData, loading, error }) =
   };
 
   const formatTime = (timestamp: string) => {
-    if (!timestamp) return 'N/A';
-    try {
-      return new Date(timestamp).toLocaleTimeString('en-US', {
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: true,
-      });
-    } catch {
-      return 'Invalid Time';
-    }
-  };
+  if (!timestamp) return 'N/A';
+  try {
+    const timePart = timestamp.split('T')[1]?.split('+')[0]?.split('-')[0]?.substring(0, 5);
+    return timePart || 'Invalid Time';
+  } catch {
+    return 'Invalid Time';
+  }
+};
 
   if (loading) {
     return (
