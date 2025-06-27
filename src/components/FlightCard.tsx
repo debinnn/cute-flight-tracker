@@ -83,7 +83,7 @@ const FlightCard: React.FC<FlightCardProps> = ({ flightData, loading, error }) =
         minute: '2-digit',
         hour12: true,
       });
-    } catch (error) {
+    } catch {
       return 'Invalid Time';
     }
   };

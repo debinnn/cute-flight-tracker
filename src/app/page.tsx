@@ -4,6 +4,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import FlightCard from '@/components/FlightCard';
 import AnimatedBackground from '@/components/AnimatedBackground';
+import FlightProgress from '@/components/FlightProgress';
 
 interface FlightData {
   flight_status: string;
@@ -127,6 +128,17 @@ export default function Home() {
             </div>
           )}
         </motion.div>
+
+        {/* Flight Progress Bar */}
+        {flightData && !loading && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+          >
+            <FlightProgress status={flightData.flight_status || 'scheduled'} />
+          </motion.div>
+        )}
 
         {/* Mobile-optimized Flight Card */}
         <div className="w-full mb-6 sm:mb-8">
