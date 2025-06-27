@@ -63,13 +63,6 @@ const FlightProgress = ({ status }: FlightProgressProps) => {
       <div className="font-pixel text-xs sm:text-sm text-pink-800 text-center mt-2 sm:mt-3 leading-relaxed">
         Flight Status: <span className="text-pink-600 font-bold">{status}</span> ({progress}% complete)
       </div>
-      
-      {/* Stage Labels */}
-      <div className="flex justify-between mt-3 sm:mt-4 font-pixel text-xs sm:text-sm text-pink-900 px-1">
-        <span className="text-center">🛫<br className="hidden sm:block"/>Departure</span>
-        <span className="text-center">✈️<br className="hidden sm:block"/>In Flight</span>
-        <span className="text-center">🛬<br className="hidden sm:block"/>Arrival</span>
-      </div>
     </div>
   );
 };
