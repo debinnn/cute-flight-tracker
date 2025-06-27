@@ -1,16 +1,9 @@
 import type { Metadata } from "next";
-import { Press_Start_2P } from "next/font/google";
 import "./globals.css";
 
-const pixelFont = Press_Start_2P({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-pixel",
-});
-
 export const metadata: Metadata = {
-  title: "Cute Flight Tracker ✈️",
-  description: "Kawaii flight tracker for IX 322 - Made with love for your travel day 💖",
+  title: "Flight Tracker ✈️ - IX 322",
+  description: "Cute flight tracker for IX 322 with kawaii design and real-time updates",
 };
 
 export default function RootLayout({
@@ -20,9 +13,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${pixelFont.variable} antialiased`}
-      >
+      <head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className="antialiased">
         {children}
       </body>
     </html>
