@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
-    const flight = searchParams.get('flight') || '6E1005';
+    const flight = searchParams.get('flight') || 'IX322';
     
     const API_KEY = process.env.NEXT_PUBLIC_AVIATIONSTACK_API_KEY;
     
@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Simple API call without date - works with free plan
-    const apiUrl = `https://api.aviationstack.com/v1/flights?access_key=${API_KEY}&flight_iata=${flight}&limit=1`;
+    const apiUrl = `https://api.aviationstack.com/v1/flights?access_key=${API_KEY}&flight_iata=6E1005&limit=1`;
     
     console.log(`Fetching flight data for ${flight}...`);
     
