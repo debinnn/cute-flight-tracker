@@ -1,26 +1,145 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 50%, #fbcfe8 100%);
+  --foreground: #831843;
+  --pink-50: #fdf2f8;
+  --pink-100: #fce7f3;
+  --pink-200: #fbcfe8;
+  --pink-300: #f9a8d4;
+  --pink-400: #f472b6;
+  --pink-500: #ec4899;
+  --pink-600: #db2777;
+  --pink-700: #be185d;
+  --pink-800: #9d174d;
+  --pink-900: #831843;
+  --rose-gold: #e8b4b8;
+  --shadow-kawaii: rgba(236, 72, 153, 0.15);
+  --font-pixel: 'Press Start 2P', monospace;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  /* Mobile optimizations */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Pixel font for headers */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-pixel), monospace;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.font-pixel {
+  font-family: var(--font-pixel), monospace;
+}
+
+/* Improve button touch targets on mobile */
+button {
+  touch-action: manipulation;
+  min-height: 44px; /* Minimum touch target size for accessibility */
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fdf2f8;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #f9a8d4;
+  border-radius: 10px;
+  border: 1px solid #fdf2f8;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ec4899;
+}
+
+/* Mobile-specific improvements */
+@media (max-width: 640px) {
+  body {
+    font-size: 14px;
+  }
+  
+  /* Ensure all interactive elements have proper touch targets */
+  button, a, input, select, textarea {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Safe area for iPhone notch/Dynamic Island */
+@supports (padding-top: env(safe-area-inset-top)) {
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Kawaii animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); } /* Reduced for mobile */
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; } /* Reduced opacity for mobile */
+  50% { opacity: 0.8; }
+}
+
+@keyframes drift {
+  0% { transform: translateX(-10px); }
+  100% { transform: translateX(calc(100vw + 10px)); }
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50% { opacity: 0.8; transform: scale(1.1); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-twinkle {
+  animation: twinkle 2s ease-in-out infinite;
+}
+
+.animate-drift {
+  animation: drift 20s linear infinite;
+}
+
+.animate-sparkle {
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+/* Custom utility for better mobile performance */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
 }
