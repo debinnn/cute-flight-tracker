@@ -136,7 +136,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
           >
-            <FlightProgress status={flightData.flight_status || 'scheduled'} />
+            <FlightProgress flightData={flightData} />
           </motion.div>
         )}
 
